@@ -7,7 +7,7 @@ import android.os.Parcelable
 
 // 제목, 내용, 날짜를 담을 수 있는 데이터리스트여야 함.
 // 날짜는 근데 현재 날짜를 구해서 적용해야 함.
-// 그럼 날짜를 데이터에 넣어야 하는건가...??
+
 
 data class MemoInfo(var title: String?, var content: String?, val date: String?) : Parcelable {
     constructor(parcel: Parcel) : this(
