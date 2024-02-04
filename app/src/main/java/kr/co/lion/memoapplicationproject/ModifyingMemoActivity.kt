@@ -28,7 +28,7 @@ class ModifyingMemoActivity : AppCompatActivity() {
         setContentView(modifyingMemoBinding.root)
 
         // Intent에서 데이터 가져오기
-        selectedMemo = intent.getParcelableExtra<MemoInfo>("modifiedMemo")
+        selectedMemo = intent.getParcelableExtra<MemoInfo>("modifyingMemo")
 
         setToolbar()
         setTextField()

@@ -33,11 +33,11 @@ class ViewMemoActivity : AppCompatActivity() {
         viewMemoBinding = ActivityViewMemoBinding.inflate(layoutInflater)
         setContentView(viewMemoBinding.root)
 
-        selectedMemo = intent.getParcelableExtra<MemoInfo>("modifiedMemo")
+        selectedMemo = intent.getParcelableExtra<MemoInfo>("memo")
 
         initData()
         setToolbar()
-        setTextField()
+        setWritingTextField()
     }
 
     fun initData() {
@@ -53,7 +53,7 @@ class ViewMemoActivity : AppCompatActivity() {
                         selectedMemo = it.data!!.getParcelableExtra<MemoInfo>("modifiedMemo")
                     }
                     // 텍스트 필드를 업데이트합니다.
-                    setTextField()
+                    setModifiedTextField()
                 }
             }
         }
@@ -84,7 +84,7 @@ class ViewMemoActivity : AppCompatActivity() {
                         R.id.modifying_memo_menu -> {
                             // ModifyingMemoActivity 실행
                             val modifyingIntent = Intent(this@ViewMemoActivity, ModifyingMemoActivity::class.java)
-                            modifyingIntent.putExtra("modifiedMemo", selectedMemo)
+                            modifyingIntent.putExtra("modifyingMemo", selectedMemo)
                             modifyingMemoActivityLauncher.launch(modifyingIntent)
                         }
 
@@ -104,9 +104,31 @@ class ViewMemoActivity : AppCompatActivity() {
 
 
     // 텍스트 필드에 대한 기능 정하는 메소드
-    fun setTextField() {
+    fun setWritingTextField() {
+
         // Intent에서 데이터 가져오기
         selectedMemo = intent.getParcelableExtra<MemoInfo>("memo")
+
+        viewMemoBinding.apply {
+            textFieldInputTitle2.apply {
+                setText(selectedMemo?.title)
+                isEnabled = false
+            }
+
+            textFieldInputDate.apply {
+                setText(selectedMemo?.date)
+                isEnabled = false
+            }
+
+            textFieldInputContent2.apply {
+                setText(selectedMemo?.content)
+                isEnabled = false
+            }
+        }
+    }
+
+    // 수정된 메모를 받아오는 메소드
+    fun setModifiedTextField() {
 
         viewMemoBinding.apply {
             textFieldInputTitle2.apply {
@@ -147,4 +169,5 @@ class ViewMemoActivity : AppCompatActivity() {
         }
         builder.show()
     }
+
 }

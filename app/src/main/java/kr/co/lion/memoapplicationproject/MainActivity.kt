@@ -122,12 +122,14 @@ class MainActivity : AppCompatActivity() {
     }
 
     // 수정한 메모에 관련한 메소드
-    private fun modifyMemo(modifyMemo: MemoInfo) {
-        val index = memoList.indexOfFirst { it.date == modifyMemo.date }
-        memoList[index].title = modifyMemo.title
-        memoList[index].content = modifyMemo.content
+    private fun modifyMemo(modifiedMemo: MemoInfo) {
+        val index = memoList.indexOfFirst { it.date == modifiedMemo.date }
+        if (index != -1) {
+            memoList[index].title = modifiedMemo.title
+            memoList[index].content = modifiedMemo.content
 
-        activityMainBinding.recyclerViewMain.adapter?.notifyItemChanged(index)
+            activityMainBinding.recyclerViewMain.adapter?.notifyItemChanged(index)
+        }
     }
 
     fun setToolbar() {
