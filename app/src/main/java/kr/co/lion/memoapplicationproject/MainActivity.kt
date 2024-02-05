@@ -128,6 +128,14 @@ class MainActivity : AppCompatActivity() {
             memoList[index].title = modifiedMemo.title
             memoList[index].content = modifiedMemo.content
 
+            // Get ViewHolder for the item at 'index'
+            val viewHolder = activityMainBinding.recyclerViewMain.findViewHolderForAdapterPosition(index)
+            if (viewHolder is RecyclerViewMainAdapter.ViewHolderMain) {
+                // Set the modified title and content
+                viewHolder.rowMainBinding.textViewMemoTitle.text = modifiedMemo.title
+                viewHolder.rowMainBinding.textViewMemoWritedDate.text = modifiedMemo.date
+            }
+
             activityMainBinding.recyclerViewMain.adapter?.notifyItemChanged(index)
         }
     }

@@ -54,6 +54,9 @@ class ViewMemoActivity : AppCompatActivity() {
                     }
                     // 텍스트 필드를 업데이트합니다.
                     setModifiedTextField()
+
+                    intent.putExtra("modifiedMemo", selectedMemo)
+                    setResult(MODIFY_RESULT_OK, intent)
                 }
             }
         }
@@ -70,7 +73,6 @@ class ViewMemoActivity : AppCompatActivity() {
                 // 뒤로가기 기능 정의
                 setNavigationIcon(R.drawable.arrow_back_24px)
                 setNavigationOnClickListener {
-                    setResult(RESULT_CANCELED)
                     finish()
                 }
 
@@ -169,5 +171,4 @@ class ViewMemoActivity : AppCompatActivity() {
         }
         builder.show()
     }
-
 }
